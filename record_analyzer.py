@@ -21,10 +21,17 @@ def is_valid_record(record):
     if not isinstance(record["score"], (int, float)):
         return False
 
+    if record["score"] < 0 or record["score"] > 100:
+        return False
+
     return True
 
 #print(is_valid_record({"course" :"python", "score": 80}))
 #print(is_valid_record({"course": "python"}))
+#print(is_valid_record({"course": "test", "score": -1}))
+#print(is_valid_record({"course": "test", "score": 0}))
+#print(is_valid_record({"course": "test", "score": 100}))
+#print(is_valid_record({"course": "test", "score": 101}))
 
 def summarize_records(records, minimum):
     accepted = 0
