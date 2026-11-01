@@ -59,12 +59,6 @@ def summarize_records(records, minimum):
         "average": average
     }
 
-records = [
-    {"course": "python", "score": 80},
-    {"course": "java", "score": 40},
-    {"course": "ML"}
-]
-
 #print(summarize_records(records, 60))
 
 def load_records(filename):
