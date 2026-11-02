@@ -85,5 +85,8 @@ loaded_records = load_records("records.json")
 if loaded_records is not None:
     summary = summarize_records(loaded_records, 60)
     print("summary =", summary)
+
+    with open("summary.json", "w") as file:
+        json.dump(summary, file, indent=4)
 else:
     print("summary skipped")
