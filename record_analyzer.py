@@ -1,6 +1,6 @@
 import json
 
-print("record analyzer started")
+
 
 def is_valid_record(record):
     if not isinstance(record, dict):
@@ -8,7 +8,7 @@ def is_valid_record(record):
 
     if "course" not in record or "score" not in record:
         return False
-    
+
     if not isinstance(record["course"], str):
         return False
 
@@ -80,13 +80,19 @@ def load_records(filename):
 
     return records
 
-loaded_records = load_records("records.json")
+def main():
+    print("record analyzer started")
 
-if loaded_records is not None:
-    summary = summarize_records(loaded_records, 60)
-    print("summary =", summary)
+    loaded_records = load_records("records.json")
 
-    with open("summary.json", "w") as file:
-        json.dump(summary, file, indent=4)
-else:
-    print("summary skipped")
+    if loaded_records is not None:
+        summary = summarize_records(loaded_records, 60)
+        print("summary =", summary)
+
+        with open("summary.json", "w") as file:
+            json.dump(summary, file, indent=4)
+    else:
+        print("summary skipped")
+
+if __name__ == "__main__":
+	main()
