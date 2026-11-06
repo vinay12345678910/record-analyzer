@@ -1,0 +1,8 @@
+# Record Analyzer - Python Dependencies
+# This project uses only Python standard library
+# No external packages required
+
+# For development/testing (optional):
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=4.0.0

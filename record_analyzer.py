@@ -1,8 +1,36 @@
+"""
+Record Analyzer - Validates and summarizes course records from JSON files.
+
+This module provides functionality to:
+- Load course records from JSON files
+- Validate record structure and data types
+- Filter records based on minimum score threshold
+- Calculate statistics (total, average, counts)
+- Export summary results to JSON
+
+Author: Vinay
+License: MIT
+"""
+
 import json
 
 
-
 def is_valid_record(record):
+    """
+    Validate a single course record.
+
+    Args:
+        record: A dictionary containing course information
+
+    Returns:
+        bool: True if record is valid, False otherwise
+
+    Validation Rules:
+        - Must be a dictionary
+        - Must contain 'course' and 'score' keys
+        - Course must be a non-empty string
+        - Score must be a number (not boolean) between 0 and 100 inclusive
+    """
     if not isinstance(record, dict):
         return False
 
@@ -34,6 +62,20 @@ def is_valid_record(record):
 #print(is_valid_record({"course": "test", "score": 101}))
 
 def summarize_records(records, minimum):
+    """
+    Summarize valid records that meet the minimum score threshold.
+
+    Args:
+        records (list): List of course record dictionaries
+        minimum (int/float): Minimum score threshold for acceptance
+
+    Returns:
+        dict: Summary with keys:
+            - accepted (int): Count of valid records >= minimum
+            - ignored (int): Count of invalid or below-threshold records
+            - total (int/float): Sum of all accepted scores
+            - average (float): Average of accepted scores (0 if none accepted)
+    """
     accepted = 0
     ignored = 0
     total = 0
@@ -62,6 +104,20 @@ def summarize_records(records, minimum):
 #print(summarize_records(records, 60))
 
 def load_records(filename):
+    """
+    Load and validate course records from a JSON file.
+
+    Args:
+        filename (str): Path to the JSON file containing records
+
+    Returns:
+        list or None: List of records if successful, None if error occurred
+
+    Error Handling:
+        - Prints "File not Found" if file doesn't exist
+        - Prints "Invalid JSON" if file contains malformed JSON
+        - Prints "Expected a list of records" if root element is not a list
+    """
     try:
         with open(filename, "r") as file:
             records = json.load(file)
@@ -81,6 +137,15 @@ def load_records(filename):
     return records
 
 def main():
+    """
+    Main entry point for the record analyzer.
+
+    Process:
+        1. Load records from 'records.json'
+        2. Analyze records with minimum score of 60
+        3. Print summary to console
+        4. Export summary to 'summary.json'
+    """
     print("record analyzer started")
 
     loaded_records = load_records("records.json")
