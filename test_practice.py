@@ -23,3 +23,10 @@ with tempfile.TemporaryDirectory() as folder:
         file.write("[")
     result = load_records(invalid_path)
     assert result is None
+
+with tempfile.TemporaryDirectory() as folder:
+    empty_path = f"{folder}/empty.json"
+    with open(empty_path, "w", encoding = "utf-8") as file:
+        file.write("[]")
+    result = load_records(empty_path)
+    assert result == []

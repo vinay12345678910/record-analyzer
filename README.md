@@ -92,11 +92,13 @@ Run the test suite to verify functionality:
 python3 -B test_practice.py
 ```
 
-The test suite covers:
-- Valid record processing and summary generation
-- Missing file handling
-- Malformed JSON error handling
-- Edge cases and validation logic
+The test suite checks four cases:
+- Summary calculation for scores above and below the cutoff
+- Missing file returns `None`
+- Malformed JSON returns `None`
+- A valid JSON file containing `[]` returns an empty list
+
+The missing-file and malformed-JSON tests print `File not Found` and `Invalid JSON` during a passing run.
 
 ## Project Structure
 
