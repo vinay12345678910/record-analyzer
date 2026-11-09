@@ -73,6 +73,30 @@ Generated `summary.json`:
 }
 ```
 
+## Record Analyzer Flowchart
+
+```mermaid
+flowchart TD
+    A([Start]) --> B["Load records.json"]
+    B --> C{"Did the file load<br/>as a JSON list?"}
+    C -- No --> D["Print the error and skip the summary"]
+    D --> Z([End])
+
+    C -- Yes --> E["Set accepted, ignored, and total to 0"]
+    E --> F{"Any records left?"}
+    F -- Yes --> G{"Is the next record valid?"}
+    G -- No --> H["Add 1 to ignored"]
+    G -- Yes --> I{"Is its score at least 60?"}
+    I -- No --> H
+    I -- Yes --> J["Add 1 to accepted<br/>and add the score to total"]
+    H --> F
+    J --> F
+
+    F -- No --> K["Calculate average as total ÷ accepted<br/>Use 0 if accepted is 0"]
+    K --> L["Print the summary and save it to summary.json"]
+    L --> Z
+```
+
 ## Validation Rules
 
 Each record must satisfy the following criteria:
