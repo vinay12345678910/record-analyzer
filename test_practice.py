@@ -5,9 +5,10 @@ from record_analyzer import summarize_records, load_records
 records = [
     {"course": "python", "score": 80},
     {"course": "SQL", "score": 50},
+    {"course": "Math", "score": 60}
 ]
 
-expected = {"accepted": 1, "ignored": 1, "total": 80, "average": 80.0}
+expected = {"accepted": 2, "ignored": 1, "total": 140, "average": 70.0}
 actual = summarize_records(records, 60)
 
 assert actual == expected

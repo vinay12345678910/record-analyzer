@@ -55,12 +55,10 @@ The `records.json` file should contain an array of course records:
 
 ### Output
 
-Console output example:
+Console output with the included `records.json`:
 ```
-Accepted: 2
-Ignored: 1
-Total Score: 157
-Average: 78.5
+record analyzer started
+summary = {'accepted': 2, 'ignored': 1, 'total': 140, 'average': 70.0}
 ```
 
 Generated `summary.json`:
@@ -68,8 +66,8 @@ Generated `summary.json`:
 {
   "accepted": 2,
   "ignored": 1,
-  "total": 157,
-  "average": 78.5
+  "total": 140,
+  "average": 70.0
 }
 ```
 
@@ -116,13 +114,14 @@ Run the test suite to verify functionality:
 python3 -B test_practice.py
 ```
 
-The test suite checks four cases:
-- Summary calculation for scores above and below the cutoff
+The test suite checks five cases:
+- Summary calculation for scores above, at, and below the cutoff
 - Missing file returns `None`
 - Malformed JSON returns `None`
 - A valid JSON file containing `[]` returns an empty list
+- A valid JSON file containing `{}` returns `None` because the loader expects a list
 
-The missing-file and malformed-JSON tests print `File not Found` and `Invalid JSON` during a passing run.
+A passing run prints `File not Found`, `Invalid JSON`, and `Expected a list of records` for the three loader error cases.
 
 ## Project Structure
 
