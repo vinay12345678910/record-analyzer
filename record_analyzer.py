@@ -45,12 +45,7 @@ def summarize_records(records, minimum):
 
     average = total / accepted if accepted > 0 else 0
 
-    return {
-        "accepted": accepted,
-        "ignored": ignored,
-        "total": total,
-        "average": average
-    }
+    return {"accepted": accepted, "ignored": ignored, "total": total, "average": average}
 
 
 def load_records(filename):
