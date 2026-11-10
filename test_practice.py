@@ -30,3 +30,10 @@ with tempfile.TemporaryDirectory() as folder:
         file.write("[]")
     result = load_records(empty_path)
     assert result == []
+
+with tempfile.TemporaryDirectory() as folder:
+    no_list_path = f"{folder}/no_list.json"
+    with open(no_list_path, "w", encoding = "utf-8") as file:
+        file.write("{}")
+    result = load_records(no_list_path)
+    assert result is None
